@@ -1,5 +1,6 @@
 const mqtt = require('mqtt');
 const { Client } = require('pg')
+const moment = require("moment");
 
 
 const postgres = new Client({
@@ -30,9 +31,17 @@ function onSubscribe(err)
     if (err) {console.log(err);}
 }
 
+function checkData(data) {
+    if(!moment(data.zeit, 'DD.MM.YYYY HH:mm:ss.SSS',true).isValid()){
+        throw new Error("Date has wrong format: " + data.zeit)
+    }
+}
+
 async function onMessage(topic, message) {
     try {
         const data = JSON.parse(message)
+
+        checkData(data)
 
         console.log("Incoming:")
         console.log(data)

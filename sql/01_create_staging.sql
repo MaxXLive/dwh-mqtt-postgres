@@ -1,4 +1,4 @@
-drop schema staging cascade;
+drop schema if exists staging cascade;
 
 create schema staging;
 
@@ -33,7 +33,7 @@ create table staging.kunde (
    , vorname varchar(200) not null
    , nachname varchar(200) not null
    , anrede varchar(20) CHECK (anrede IN ('Dr.', 'Prof.', 'Frau', 'Herr', 'Prof. Dr.'))
-   , geschlecht varchar(20) not null CHECK (geschlecht IN ('m‰nnlich', 'weiblich', 'divers', 'genderqueer', 'offen'))
+   , geschlecht varchar(20) not null CHECK (geschlecht IN ('m√§nnlich', 'weiblich', 'divers', 'genderqueer', 'offen'))
    , geburtsdatum date
    , wohnort integer not null
    , erstellt_am TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP 

@@ -2,6 +2,12 @@ drop schema IF EXISTS mart cascade;
 
 create schema mart;
 
+-- Load extension
+CREATE EXTENSION cstore_fdw;
+
+-- create server object to access an external data resource
+CREATE SERVER cstore_server FOREIGN DATA WRAPPER cstore_fdw;
+
 
 create table mart.d_kunde (
      d_kunde_id bigint GENERATED ALWAYS AS IDENTITY
@@ -33,8 +39,6 @@ create table mart.d_ort (
    , land varchar(200) 
    , constraint pk_d_ort primary key (d_ort_id)
 );
-
-CREATE SERVER cstore_server;
 
 create foreign table mart.f_fzg_messung (
      messung_erzeugt timestamp not null

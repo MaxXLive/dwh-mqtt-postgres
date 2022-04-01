@@ -34,8 +34,8 @@ function getTimestamp() {
     let month = ("0" + (date_ob.getMonth() + 1)).slice(-2);
     let year = date_ob.getFullYear();
     let hours = date_ob.getHours();
-    let minutes = date_ob.getMinutes();
-    let seconds = date_ob.getSeconds();
+    let minutes = formatTwoDigit(date_ob.getMinutes());
+    let seconds = formatTwoDigit(date_ob.getSeconds());
     let milliseconds = date_ob.getMilliseconds()
 
     return date + "." + month + "." + year + " " + hours + ":" + minutes + ":" + seconds + "." + milliseconds
@@ -43,4 +43,11 @@ function getTimestamp() {
 
 function getSpeed(min, max) {
     return Math.floor(Math.random() * (max - min) + min);
+}
+
+function formatTwoDigit(num) {
+    if(num < 10)
+        return "0" + num
+    else
+        return num
 }
